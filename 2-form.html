@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-  <script type="module" crossorigin src="/goit-js-hw-09/assets/modulepreload-polyfill-ec808ebb.js"></script>
+  <script type="module" crossorigin src="/goit-js-hw-09/commonHelpers2.js"></script>
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-09/assets/modulepreload-polyfill-ec808ebb.js">
+  <link rel="stylesheet" href="/goit-js-hw-09/assets/2-form-6c5e02d5.css">
 </head>
 
 
@@ -13,7 +15,17 @@
 <body>
     <p><a href="index.html">Back</a></p>
     
-
+    <form class="feedback-form" autocomplete="off">
+        <label class="form-label">
+          Email
+          <input class="form-input" type="email" name="email" autofocus placeholder="Type area" />
+        </label>
+        <label class="form-label">
+          Message
+          <textarea class="form-textarea" name="message" rows="8"></textarea> 
+        </label>
+        <button type="submit" class="form-button">Submit</button>
+      </form>
 
 
     
