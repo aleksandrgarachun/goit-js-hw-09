@@ -6,6 +6,7 @@ form.addEventListener("submit", onFormSubmit);
 form.addEventListener("input", onInputOrTextarea);
 
 
+updateFormData();
 
 function onFormSubmit(event) {
     event.preventDefault();
@@ -16,7 +17,7 @@ function onFormSubmit(event) {
     };
 
     saveFormData(formData);
-    console.log("Form data submitted:", formData);
+    console.log(formData);
     form.reset();
 
 }
@@ -27,7 +28,7 @@ function onInputOrTextarea(event) {
     const nameValue = event.target.name;
     const inputValue = event.target.value;
 
-    saveFormData({[nameValue]: inputValue});
+    saveFormData({ [nameValue]: inputValue});
 }
 
 
@@ -36,6 +37,13 @@ function saveFormData(data) {
     const updateFormData = {...savedMessage, ...data};
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updateFormData));
 
+}
+
+
+function updateFormData() {
+    const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    form.querySelector(".form-input").value = savedData.email || "";
+    form.querySelector(".form-textarea").value = savedData.message || "";
 }
 
 
