@@ -12,12 +12,18 @@ function onFormSubmit(event) {
     event.preventDefault();
 
     const formData = {
-        email: form.querySelector(".form-input").value,
-        message: form.querySelector(".form-textarea").value,
+        email: form.querySelector(".form-input").value.trim(),
+        message: form.querySelector(".form-textarea").value.trim(),
     };
+    
+    if(!formData.email || !formData.message) {
+        alert("Fill in all fields of the form");
+        return;
+    }
 
     saveFormData(formData);
     console.log(formData);
+    localStorage.removeItem(STORAGE_KEY);
     form.reset();
 
 }
@@ -26,7 +32,7 @@ function onFormSubmit(event) {
 
 function onInputOrTextarea(event) {
     const nameValue = event.target.name;
-    const inputValue = event.target.value;
+    const inputValue = event.target.value.trim();
 
     saveFormData({ [nameValue]: inputValue});
 }
@@ -45,5 +51,4 @@ function updateFormData() {
     form.querySelector(".form-input").value = savedData.email || "";
     form.querySelector(".form-textarea").value = savedData.message || "";
 }
-
 
